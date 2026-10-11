@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PedometerApp" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/pedometer_dark_bg</item>
+        <item name="android:navigationBarColor">@color/pedometer_dark_bg</item>
+    </style>
+</resources>
