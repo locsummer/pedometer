@@ -1,0 +1,396 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000012A00000100000001 /* PedometerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000022A00000100000001 /* PedometerApp.swift */; };
+		A10000032A00000100000001 /* StepRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000042A00000100000001 /* StepRecord.swift */; };
+		A10000052A00000100000001 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000062A00000100000001 /* Workout.swift */; };
+		A10000072A00000100000001 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000082A00000100000001 /* Badge.swift */; };
+		A10000092A00000100000001 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000A2A00000100000001 /* AppSettings.swift */; };
+		A100000B2A00000100000001 /* PedometerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000C2A00000100000001 /* PedometerService.swift */; };
+		A100000D2A00000100000001 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100000E2A00000100000001 /* HealthKitManager.swift */; };
+		A100000F2A00000100000001 /* LocationTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000102A00000100000001 /* LocationTracker.swift */; };
+		A10000112A00000100000001 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000122A00000100000001 /* StorageService.swift */; };
+		A10000132A00000100000001 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000142A00000100000001 /* DashboardViewModel.swift */; };
+		A10000152A00000100000001 /* WorkoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000162A00000100000001 /* WorkoutViewModel.swift */; };
+		A10000172A00000100000001 /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000182A00000100000001 /* BadgesViewModel.swift */; };
+		A10000192A00000100000001 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100001A2A00000100000001 /* SettingsViewModel.swift */; };
+		A100001B2A00000100000001 /* StepRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100001C2A00000100000001 /* StepRingView.swift */; };
+		A100001D2A00000100000001 /* DailyBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100001E2A00000100000001 /* DailyBarChart.swift */; };
+		A100001F2A00000100000001 /* MetricCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000202A00000100000001 /* MetricCard.swift */; };
+		A10000212A00000100000001 /* WorkoutMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000222A00000100000001 /* WorkoutMapView.swift */; };
+		A10000232A00000100000001 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000242A00000100000001 /* DashboardView.swift */; };
+		A10000252A00000100000001 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000262A00000100000001 /* WorkoutView.swift */; };
+		A10000272A00000100000001 /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000282A00000100000001 /* TrendsView.swift */; };
+		A10000292A00000100000001 /* BadgesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100002A2A00000100000001 /* BadgesView.swift */; };
+		A100002B2A00000100000001 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100002C2A00000100000001 /* SettingsView.swift */; };
+		A100002D2A00000100000001 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A100002E2A00000100000001 /* MainTabView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000002A00000100000001 /* PedometerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PedometerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000022A00000100000001 /* PedometerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerApp.swift; sourceTree = "<group>"; };
+		A10000042A00000100000001 /* StepRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRecord.swift; sourceTree = "<group>"; };
+		A10000062A00000100000001 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+		A10000082A00000100000001 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		A100000A2A00000100000001 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A100000C2A00000100000001 /* PedometerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PedometerService.swift; sourceTree = "<group>"; };
+		A100000E2A00000100000001 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		A10000102A00000100000001 /* LocationTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTracker.swift; sourceTree = "<group>"; };
+		A10000122A00000100000001 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		A10000142A00000100000001 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		A10000162A00000100000001 /* WorkoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutViewModel.swift; sourceTree = "<group>"; };
+		A10000182A00000100000001 /* BadgesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
+		A100001A2A00000100000001 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		A100001C2A00000100000001 /* StepRingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRingView.swift; sourceTree = "<group>"; };
+		A100001E2A00000100000001 /* DailyBarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBarChart.swift; sourceTree = "<group>"; };
+		A10000202A00000100000001 /* MetricCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricCard.swift; sourceTree = "<group>"; };
+		A10000222A00000100000001 /* WorkoutMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutMapView.swift; sourceTree = "<group>"; };
+		A10000242A00000100000001 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		A10000262A00000100000001 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
+		A10000282A00000100000001 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		A100002A2A00000100000001 /* BadgesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesView.swift; sourceTree = "<group>"; };
+		A100002C2A00000100000001 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A100002E2A00000100000001 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		A10000302A00000100000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000312A00000100000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000322A00000100000001 = {
+			isa = PBXGroup;
+			children = (
+				A10000332A00000100000001 /* PedometerApp */,
+				A10000342A00000100000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000332A00000100000001 /* PedometerApp */ = {
+			isa = PBXGroup;
+			children = (
+				A10000352A00000100000001 /* App */,
+				A10000362A00000100000001 /* Models */,
+				A10000372A00000100000001 /* Services */,
+				A10000382A00000100000001 /* ViewModels */,
+				A10000392A00000100000001 /* Components */,
+				A100003A2A00000100000001 /* Views */,
+				A100003B2A00000100000001 /* Resources */,
+			);
+			path = PedometerApp;
+			sourceTree = "<group>";
+		};
+		A10000342A00000100000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000002A00000100000001 /* PedometerApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000352A00000100000001 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A10000022A00000100000001 /* PedometerApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A10000362A00000100000001 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A10000042A00000100000001 /* StepRecord.swift */,
+				A10000062A00000100000001 /* Workout.swift */,
+				A10000082A00000100000001 /* Badge.swift */,
+				A100000A2A00000100000001 /* AppSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A10000372A00000100000001 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A100000C2A00000100000001 /* PedometerService.swift */,
+				A100000E2A00000100000001 /* HealthKitManager.swift */,
+				A10000102A00000100000001 /* LocationTracker.swift */,
+				A10000122A00000100000001 /* StorageService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A10000382A00000100000001 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A10000142A00000100000001 /* DashboardViewModel.swift */,
+				A10000162A00000100000001 /* WorkoutViewModel.swift */,
+				A10000182A00000100000001 /* BadgesViewModel.swift */,
+				A100001A2A00000100000001 /* SettingsViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A10000392A00000100000001 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				A100001C2A00000100000001 /* StepRingView.swift */,
+				A100001E2A00000100000001 /* DailyBarChart.swift */,
+				A10000202A00000100000001 /* MetricCard.swift */,
+				A10000222A00000100000001 /* WorkoutMapView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		A100003A2A00000100000001 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A10000242A00000100000001 /* DashboardView.swift */,
+				A10000262A00000100000001 /* WorkoutView.swift */,
+				A10000282A00000100000001 /* TrendsView.swift */,
+				A100002A2A00000100000001 /* BadgesView.swift */,
+				A100002C2A00000100000001 /* SettingsView.swift */,
+				A100002E2A00000100000001 /* MainTabView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A100003B2A00000100000001 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000302A00000100000001 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A100003C2A00000100000001 /* PedometerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A100003D2A00000100000001 /* Build configuration list for PBXNativeTarget "PedometerApp" */;
+			buildPhases = (
+				A100003E2A00000100000001 /* Sources */,
+				A10000312A00000100000001 /* Frameworks */,
+				A100003F2A00000100000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PedometerApp;
+			productName = PedometerApp;
+			productReference = A10000002A00000100000001 /* PedometerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000402A00000100000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A100003C2A00000100000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A10000412A00000100000001 /* Build configuration list for PBXProject "PedometerApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000322A00000100000001;
+			productRefGroup = A10000342A00000100000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A100003C2A00000100000001 /* PedometerApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A100003F2A00000100000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A100003E2A00000100000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000012A00000100000001 /* PedometerApp.swift in Sources */,
+				A10000032A00000100000001 /* StepRecord.swift in Sources */,
+				A10000052A00000100000001 /* Workout.swift in Sources */,
+				A10000072A00000100000001 /* Badge.swift in Sources */,
+				A10000092A00000100000001 /* AppSettings.swift in Sources */,
+				A100000B2A00000100000001 /* PedometerService.swift in Sources */,
+				A100000D2A00000100000001 /* HealthKitManager.swift in Sources */,
+				A100000F2A00000100000001 /* LocationTracker.swift in Sources */,
+				A10000112A00000100000001 /* StorageService.swift in Sources */,
+				A10000132A00000100000001 /* DashboardViewModel.swift in Sources */,
+				A10000152A00000100000001 /* WorkoutViewModel.swift in Sources */,
+				A10000172A00000100000001 /* BadgesViewModel.swift in Sources */,
+				A10000192A00000100000001 /* SettingsViewModel.swift in Sources */,
+				A100001B2A00000100000001 /* StepRingView.swift in Sources */,
+				A100001D2A00000100000001 /* DailyBarChart.swift in Sources */,
+				A100001F2A00000100000001 /* MetricCard.swift in Sources */,
+				A10000212A00000100000001 /* WorkoutMapView.swift in Sources */,
+				A10000232A00000100000001 /* DashboardView.swift in Sources */,
+				A10000252A00000100000001 /* WorkoutView.swift in Sources */,
+				A10000272A00000100000001 /* TrendsView.swift in Sources */,
+				A10000292A00000100000001 /* BadgesView.swift in Sources */,
+				A100002B2A00000100000001 /* SettingsView.swift in Sources */,
+				A100002D2A00000100000001 /* MainTabView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A10000422A00000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A10000432A00000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A10000442A00000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PedometerApp/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pedometer++";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.pedometerapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A10000452A00000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PedometerApp/Resources/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Pedometer++";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 5.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.pedometerapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000412A00000100000001 /* Build configuration list for PBXProject "PedometerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000422A00000100000001 /* Debug */,
+				A10000432A00000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A100003D2A00000100000001 /* Build configuration list for PBXNativeTarget "PedometerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A10000442A00000100000001 /* Debug */,
+				A10000452A00000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = A10000402A00000100000001 /* Project object */;
+}
