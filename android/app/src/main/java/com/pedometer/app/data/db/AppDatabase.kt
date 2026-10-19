@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-@Database(entities = [StepRecord::class, Workout::class], version = 1, exportSchema = false)
+@Database(entities = [StepRecord::class, Workout::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun stepDao(): StepDao
@@ -30,13 +30,14 @@ abstract class AppDatabase : RoomDatabase() {
                     AppDatabase::class.java,
                     "pedometer_database"
                 )
+                .fallbackToDestructiveMigration()
                 .addCallback(object : Callback() {
-                    override fun onCreate(db: SupportSQLiteDatabase) {
-                        super.onCreate(db)
-                        // Pre-populate sample historical data
+                    override fun onOpen(db: SupportSQLiteDatabase) {
+                        super.onOpen(db)
+                        // Clean up any old mock/sample data if present
                         INSTANCE?.let { database ->
                             CoroutineScope(Dispatchers.IO).launch {
-                                populateSampleData(database.stepDao())
+                                cleanupMockDataIfNeeded(database.stepDao())
                             }
                         }
                     }
@@ -47,31 +48,11 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
 
-        private suspend fun populateSampleData(dao: StepDao) {
-            val today = LocalDate.now()
-            val sampleSteps = listOf(11240, 8950, 10420, 13100, 9800, 14500, 10800, 7800, 11500, 13900, 10200, 9500, 12600, 11100)
-            
-            sampleSteps.forEachIndexed { index, steps ->
-                val date = today.minusDays(index.toLong()).toString()
-                val dist = steps * 0.75
-                val floors = (4..16).random()
-                val cal = steps * 0.042
-                val mins = steps / 105
-                val hourly = (0..23).map { h ->
-                    if (h in 7..21) (steps / 15 + (-50..50).random()).coerceAtLeast(0) else 0
-                }
-                dao.insertOrUpdate(
-                    StepRecord(
-                        date = date,
-                        stepCount = steps,
-                        distanceMeters = dist,
-                        floorsAscended = floors,
-                        floorsDescended = (floors - 2).coerceAtLeast(1),
-                        activeCalories = cal,
-                        activeMinutes = mins,
-                        hourlySteps = hourly
-                    )
-                )
+        private suspend fun cleanupMockDataIfNeeded(dao: StepDao) {
+            val records = dao.getAllRecords()
+            val mockSteps = setOf(11240, 8950, 10420, 13100, 9800, 14500, 10800, 7800, 11500, 13900, 10200, 9500, 12600, 11100)
+            if (records.any { it.stepCount in mockSteps }) {
+                dao.clearAllRecords()
             }
         }
     }

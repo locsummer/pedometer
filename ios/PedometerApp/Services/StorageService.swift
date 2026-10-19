@@ -20,7 +20,7 @@ public final class StorageService {
     public func loadDailyRecords() -> [StepRecord] {
         guard let data = UserDefaults.standard.data(forKey: recordsKey),
               let records = try? JSONDecoder().decode([StepRecord].self, from: data) else {
-            return generateMockHistoricalRecords()
+            return []
         }
         return records
     }
@@ -104,39 +104,5 @@ public final class StorageService {
             Badge(id: "climb_tower", title: "Tower Climber", description: "Climb 50 floors in total", iconName: "building.2.fill", category: .elevation, requirement: 50),
             Badge(id: "climb_everest", title: "Mount Everest", description: "Climb 1,000 floors of elevation", iconName: "mountain.2.fill", category: .elevation, requirement: 1000)
         ]
-    }
-    
-    private func generateMockHistoricalRecords() -> [StepRecord] {
-        var records: [StepRecord] = []
-        let calendar = Calendar.current
-        let today = Date()
-        
-        let sampleSteps = [11450, 8920, 10320, 12890, 9500, 14200, 10870, 7650, 11200, 13400, 10100, 9800, 12500, 11050]
-        
-        for (i, steps) in sampleSteps.enumerated() {
-            guard let date = calendar.date(byAdding: .day, value: -i, to: today) else { continue }
-            let distMeters = Double(steps) * 0.75
-            let floors = Int.random(in: 4...18)
-            let kcal = Double(steps) * 0.042
-            let mins = steps / 105
-            
-            var hourly = Array(repeating: 0, count: 24)
-            for h in 7...21 {
-                hourly[h] = steps / 15 + Int.random(in: -80...80)
-            }
-            
-            records.append(StepRecord(
-                date: date,
-                stepCount: steps,
-                distanceMeters: distMeters,
-                floorsAscended: floors,
-                floorsDescended: max(1, floors - 2),
-                activeCalories: kcal,
-                activeMinutes: mins,
-                hourlySteps: hourly
-            ))
-        }
-        
-        return records.reversed()
     }
 }

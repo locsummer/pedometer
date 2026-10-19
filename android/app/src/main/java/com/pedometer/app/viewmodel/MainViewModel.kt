@@ -35,6 +35,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _currentStreak = MutableStateFlow(0)
     val currentStreak: StateFlow<Int> = _currentStreak.asStateFlow()
 
+    private var isViewingToday = true
+
     init {
         viewModelScope.launch {
             combine(recentRecords, settings) { records, s ->
@@ -43,14 +45,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 _currentStreak.value = streak
             }
         }
+
+        viewModelScope.launch {
+            while (true) {
+                kotlinx.coroutines.delay(10_000)
+                val today = LocalDate.now().toString()
+                if (isViewingToday && _selectedDate.value != today) {
+                    _selectedDate.value = today
+                }
+            }
+        }
     }
 
     fun selectDate(date: String) {
         _selectedDate.value = date
+        isViewingToday = (date == LocalDate.now().toString())
     }
 
     fun selectToday() {
         _selectedDate.value = LocalDate.now().toString()
+        isViewingToday = true
     }
 
     private fun calculateStreak(records: List<StepRecord>, goal: Int): Int {

@@ -90,7 +90,7 @@ fun DailyBarChart(
 
                     val dayLabel = try {
                         val parsed = LocalDate.parse(record.date)
-                        parsed.format(DateTimeFormatter.ofPattern("E"))
+                        parsed.format(DateTimeFormatter.ofPattern("EEE", java.util.Locale.getDefault()))
                     } catch (e: Exception) {
                         "-"
                     }
@@ -105,15 +105,22 @@ fun DailyBarChart(
                     ) {
                         Box(
                             modifier = Modifier
-                                .fillMaxWidth(0.65f)
-                                .fillMaxHeight(fraction)
-                                .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
-                                .background(barColor)
-                                .then(
-                                    if (isSelected) Modifier.border(2.dp, Color.White, RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
-                                    else Modifier
-                                )
-                        )
+                                .weight(1f)
+                                .fillMaxWidth(),
+                            contentAlignment = Alignment.BottomCenter
+                        ) {
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.65f)
+                                    .fillMaxHeight(fraction)
+                                    .clip(RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
+                                    .background(barColor)
+                                    .then(
+                                        if (isSelected) Modifier.border(2.dp, Color.White, RoundedCornerShape(topStart = 6.dp, topEnd = 6.dp))
+                                        else Modifier
+                                    )
+                            )
+                        }
 
                         Spacer(modifier = Modifier.height(6.dp))
 

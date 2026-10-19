@@ -193,17 +193,39 @@ fun SettingsScreen(viewModel: SettingsViewModel) {
                                 onCheckedChange = { viewModel.updateSettings(settings.copy(enableNotifications = it)) }
                             )
                         }
+
+                        HorizontalDivider()
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Column {
+                                Text("Tracking Sensor", fontWeight = FontWeight.Bold)
+                                Text(viewModel.activeSensorName, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f))
+                            }
+                        }
                     }
                 }
             }
 
             item {
-                Button(
-                    onClick = { viewModel.resetDefaults() },
-                    modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
-                ) {
-                    Text("Reset Settings to Default")
+                Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                    Button(
+                        onClick = { viewModel.clearAllData() },
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error)
+                    ) {
+                        Text("Clear All Step Data (Start Fresh)")
+                    }
+
+                    OutlinedButton(
+                        onClick = { viewModel.resetDefaults() },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Reset Settings to Default")
+                    }
                 }
             }
 

@@ -23,4 +23,7 @@ interface StepDao {
 
     @Query("UPDATE step_records SET stepCount = :steps, distanceMeters = :dist, activeCalories = :cal, activeMinutes = :mins WHERE date = :date")
     suspend fun updateSteps(date: String, steps: Int, dist: Double, cal: Double, mins: Int)
+
+    @Query("DELETE FROM step_records")
+    suspend fun clearAllRecords()
 }

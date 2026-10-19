@@ -1,11 +1,17 @@
 package com.pedometer.app.service
 
-import android.app.*
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import androidx.core.app.ServiceCompat
 import com.pedometer.app.MainActivity
 import com.pedometer.app.R
 import com.pedometer.app.data.db.AppDatabase
@@ -16,7 +22,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 
 class PedometerForegroundService : Service() {
-    private val serviceScope = CoroutineScope(Dispatchers.IO + Job())
+    private val serviceScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private lateinit var sensorManager: StepSensorManager
     private lateinit var database: AppDatabase
     private lateinit var preferences: UserPreferences
@@ -42,16 +48,47 @@ class PedometerForegroundService : Service() {
         sensorManager = StepSensorManager(this)
 
         createNotificationChannel()
-        startForeground(NOTIFICATION_ID, buildNotification(0, preferences.loadSettings().stepGoal))
 
+        val initialSettings = preferences.loadSettings()
+        val initialNotification = buildNotification(0, initialSettings.stepGoal)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            ServiceCompat.startForeground(
+                this,
+                NOTIFICATION_ID,
+                initialNotification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_HEALTH
+            )
+        } else {
+            startForeground(NOTIFICATION_ID, initialNotification)
+        }
+
+        initializeTodayRecord()
         observeSensorSteps()
+        startMidnightRolloverWatcher()
+    }
+
+    private fun initializeTodayRecord() {
+        serviceScope.launch {
+            val todayStr = LocalDate.now().toString()
+            val existing = database.stepDao().getRecordForDate(todayStr)
+            val currentSteps = if (existing != null) {
+                existing.stepCount
+            } else {
+                database.stepDao().insertOrUpdate(StepRecord(date = todayStr))
+                0
+            }
+            updateNotification(currentSteps, preferences.loadSettings().stepGoal)
+        }
     }
 
     private fun observeSensorSteps() {
-        sensorManager.startListening { }
+        sensorManager.startListening()
 
         serviceScope.launch {
             sensorManager.stepEvents.collect { deltaSteps ->
+                if (deltaSteps <= 0) return@collect
+
                 val todayStr = LocalDate.now().toString()
                 val currentHour = LocalTime.now().hour
                 val settings = preferences.loadSettings()
@@ -62,8 +99,12 @@ class PedometerForegroundService : Service() {
                 val newCalories = newStepCount * 0.042
                 val newActiveMinutes = newStepCount / 100
 
-                val updatedHourly = record.hourlySteps.toMutableList()
-                if (currentHour in updatedHourly.indices) {
+                val updatedHourly = if (record.hourlySteps.size == 24) {
+                    record.hourlySteps.toMutableList()
+                } else {
+                    MutableList(24) { 0 }
+                }
+                if (currentHour in 0..23) {
                     updatedHourly[currentHour] = updatedHourly[currentHour] + deltaSteps
                 }
 
@@ -76,7 +117,31 @@ class PedometerForegroundService : Service() {
                 )
 
                 database.stepDao().insertOrUpdate(updatedRecord)
-                updateNotification(newStepCount, settings.stepGoal)
+                if (settings.enableNotifications) {
+                    updateNotification(newStepCount, settings.stepGoal)
+                }
+            }
+        }
+    }
+
+    private fun startMidnightRolloverWatcher() {
+        serviceScope.launch {
+            var lastRecordedDate = LocalDate.now().toString()
+            while (isActive) {
+                delay(15_000) // check every 15 seconds
+                val currentDate = LocalDate.now().toString()
+                if (currentDate != lastRecordedDate) {
+                    lastRecordedDate = currentDate
+                    // Date just changed to a new day!
+                    val todayRecord = database.stepDao().getRecordForDate(currentDate)
+                    val steps = if (todayRecord != null) {
+                        todayRecord.stepCount
+                    } else {
+                        database.stepDao().insertOrUpdate(StepRecord(date = currentDate))
+                        0
+                    }
+                    updateNotification(steps, preferences.loadSettings().stepGoal)
+                }
             }
         }
     }

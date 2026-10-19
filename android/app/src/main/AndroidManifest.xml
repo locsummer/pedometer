@@ -54,7 +54,7 @@
             android:name=".service.PedometerForegroundService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="health|location" />
+            android:foregroundServiceType="health" />
 
         <receiver
             android:name=".service.BootReceiver"

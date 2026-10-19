@@ -120,6 +120,12 @@ fun TrendsScreen(viewModel: MainViewModel) {
 
                         val maxSteps = maxOf(settings.stepGoal, recentRecords.maxOfOrNull { it.stepCount } ?: 10000)
 
+                        val today = java.time.LocalDate.now()
+                        val display30Days = (29 downTo 0).map { offset ->
+                            val d = today.minusDays(offset.toLong()).toString()
+                            recentRecords.find { it.date == d } ?: com.pedometer.app.data.model.StepRecord(date = d)
+                        }
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -127,16 +133,21 @@ fun TrendsScreen(viewModel: MainViewModel) {
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.Bottom
                         ) {
-                            recentRecords.take(30).reversed().forEach { rec ->
+                            display30Days.forEach { rec ->
                                 val isMet = rec.stepCount >= settings.stepGoal
                                 val fraction = (rec.stepCount.toFloat() / maxSteps.toFloat()).coerceIn(0.04f, 1f)
+                                val barColor = when {
+                                    isMet -> Color(0xFF26D07C)
+                                    rec.stepCount > 0 -> Color(0xFFFF8C00)
+                                    else -> Color.Gray.copy(alpha = 0.2f)
+                                }
                                 Box(
                                     modifier = Modifier
                                         .weight(1f)
                                         .fillMaxHeight(fraction)
                                         .padding(horizontal = 1.dp)
                                         .clip(RoundedCornerShape(3.dp))
-                                        .background(if (isMet) Color(0xFF26D07C) else Color(0xFFFF8C00))
+                                        .background(barColor)
                                 )
                             }
                         }
