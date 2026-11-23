@@ -1,0 +1,72 @@
+name: Build iOS IPA
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'ios/**'
+      - '.github/workflows/build-ios.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-ipa:
+    name: Build PedometerApp IPA
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          sudo xcode-select -s /Applications/Xcode.app
+          xcodebuild -version
+
+      - name: Build Unsigned App
+        run: |
+          cd ios
+          xcodebuild clean build \
+            -project PedometerApp.xcodeproj \
+            -scheme PedometerApp \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            BUILD_DIR=build
+
+      - name: Package into IPA
+        run: |
+          cd ios
+          mkdir -p build/Payload
+          cp -R build/Release-iphoneos/PedometerApp.app build/Payload/
+          cd build
+          zip -r -y PedometerApp.ipa Payload
+          ls -lh PedometerApp.ipa
+
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PedometerApp-ipa
+          path: ios/build/PedometerApp.ipa
+          retention-days: 14
+
+      - name: Create or Update GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/master'
+        with:
+          tag_name: ios-v5.0.0
+          name: "Pedometer++ iOS IPA v5.0.0"
+          body: |
+            ### Pedometer++ iOS (Sideloadly / AltStore Ready)
+            - **File**: `PedometerApp.ipa`
+            - Built automatically from latest master branch.
+            - Compatible with **Sideloadly** and **AltStore** via iTunes on Windows.
+            - Real-time step tracking using Apple Health / CoreMotion.
+          files: ios/build/PedometerApp.ipa
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
